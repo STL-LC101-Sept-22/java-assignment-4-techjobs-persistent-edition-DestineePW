@@ -20,6 +20,7 @@ import java.util.Optional;
  * Created by LaunchCode
  */
 @Controller
+@RequestMapping("")
 public class HomeController {
 
     @Autowired
@@ -30,10 +31,11 @@ public class HomeController {
     @Autowired
     private JobRepository jobRepository;
 
-    @RequestMapping("")
+    @GetMapping("")
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
+        model.addAttribute("jobs", jobRepository.findAll());
 
         return "index";
     }
